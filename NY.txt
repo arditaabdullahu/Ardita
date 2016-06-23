@@ -1,0 +1,65 @@
+import javax.swing.JOptionPane;
+public class NY
+{
+  public static void main(String[] args)
+    { 
+        NY d = new NY();
+        double[] g = {1, 0, 2, 2.4, 4, 0,7};
+        double[] h = {2, 0.25, 1, 3, 5, 0,2.4};
+        double l = d.dEuklidiane(g,h);
+        double p = d.dMenhetenit(g,h);
+        String s;
+        
+        JOptionPane.showMessageDialog(null, "zogu dhe taksi kalojne te njejten rruge e Manhattan te NY ne distanca te ndryshme " );
+        s =  JOptionPane.showInputDialog("Nese deshironi te dini rrugen qe ben zogu shkruani zogu, nese deshironi te dini rrugen qe ben taksi shkruani taksi");
+       
+          if (s.equals("taksi"))
+          {
+            JOptionPane.showMessageDialog(null, "taksi ben nje rruge me distance te menhetenit :  "+p + " km");
+          }
+           if (s.equals("zogu"))
+          {
+            JOptionPane.showMessageDialog(null, "zogu ben nje rruge me distance euklidiane :  "+l + " km");
+          }
+
+            }
+   
+
+        
+    // zbritja e dy vektoreve               
+    public static double[] diferenca(double[] a, double[] b) 
+    {
+        double[] ndryshimi = new double[a.length];
+        for(int i=0;i<ndryshimi.length;i++)
+        {
+            ndryshimi[i] = a[i] - b[i];
+        }
+        return ndryshimi;
+    }
+ 
+   
+    //distanca Euklidiane
+    public static double dEuklidiane(double[] c, double[] d)     {
+        double distanca = 0;
+        double[] m = diferenca(c,d);
+        for(int i=0; i<m.length; i++)
+        {
+            distanca=distanca + Math.pow(m[i],2);
+        }
+        return Math.sqrt(distanca);
+    }
+    
+    //distanca e Menhetenit
+   public static double dMenhetenit(double[] e, double[] f)
+   {  
+        double distance =0;
+        double[] k = diferenca(e,f);
+        for(int i=0; i<k.length; i++)
+        { 
+          distance= distance + Math.abs(k[i]);
+        }
+        return distance;
+
+   }
+
+}

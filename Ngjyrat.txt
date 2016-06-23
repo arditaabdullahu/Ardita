@@ -1,0 +1,92 @@
+import javax.swing.*;
+public class NjgyratEGrupit 
+{
+	public static void main(String[] args)
+	{
+      String[] ngjyrat = new String[4];
+      ngjyrat[0] = "Green";
+      ngjyrat[1] = "Brown";
+      ngjyrat[2] = "Blue";
+      ngjyrat[3] = "Black";
+      
+      int[] meshkuj = new int[ngjyrat.length];
+      int[] femra = new int[ngjyrat.length];
+      
+      int[][] meshkuj_dhe_femra = new int[2][ngjyrat.length]; // rreshti i pare jane femrat ndersa rreshti i dyte jane meshkujt
+      
+      for(int i = 0; i < ngjyrat.length; i++) 
+      {
+         String f = JOptionPane.showInputDialog("Sa femra jane me ngjyren " + ngjyrat[i] + "?");
+         femra[i] = new Integer(f).intValue();
+         meshkuj_dhe_femra[0][i] = femra[i];
+         
+         String m = JOptionPane.showInputDialog("Sa meshkuj jane me ngjyren " + ngjyrat[i] + "?");
+         meshkuj[i] = new Integer(m).intValue();
+         meshkuj_dhe_femra[1][i] = meshkuj[i];
+         
+      }
+      
+      int ngjyra_meshkujt = findLInfinitVector(meshkuj);
+      int ngjyra_femra = findLInfinitVector(femra);
+      int ngjyra_te_gjitha = findLInfinitMatrix(meshkuj_dhe_femra);
+      
+      for(int i = 0; i < ngjyrat.length; i++) 
+      {
+         if(femra[i] == ngjyra_femra)
+         {
+            System.out.println("Ngjyra me e pranishme te femrat: " + ngjyrat[i] + " - Gjithsej: " + ngjyra_femra);
+         }
+         
+         if(meshkuj[i] == ngjyra_meshkujt)
+         {
+            System.out.println("Ngjyra me e pranishme te meshkujt: " + ngjyrat[i] + " - Gjithsej: " + ngjyra_meshkujt);
+         }
+      }    
+      
+      for(int i = 0; i < ngjyrat.length; i++) 
+      {         
+         if(femra[i] == ngjyra_te_gjitha)
+         {
+            System.out.println("Ngjyra me e pranishme te meshkujt dhe femrat: " + ngjyrat[i] + " - Gjithsej: " + ngjyra_te_gjitha);
+         }
+         
+         if(meshkuj[i] == ngjyra_te_gjitha)
+         {
+            System.out.println("Ngjyra me e pranishme te meshkujt dhe femrat: " + ngjyrat[i] + " - Gjithsej: " + ngjyra_te_gjitha);
+         }
+      } 
+      
+   }
+   
+   public static int findLInfinitMatrix(int[][] n)
+   {
+      int max = 0;
+      for(int i = 0; i < 2; i++) 
+      {
+    	   for(int j = 0; j < n[0].length; j++) 
+         {
+        	   if(max < n[i][j])
+            {
+               max = n[i][j];
+            }
+         }
+                 
+      }
+      return max;
+   }
+   
+    public static int findLInfinitVector(int[] n)
+   {
+      int max = 0;
+      int pergjigjja = 0;
+      for(int i = 0; i < n.length; i++) 
+      {    	   
+         if(max < n[i])
+         {
+            max = n[i];
+         }
+        
+      }
+      return max;
+   }
+}
