@@ -1,0 +1,82 @@
+import javax.swing.JOptionPane;
+
+public class Matricat 
+{
+	public static void main(String[] args) 
+	{
+    }
+    	public double[][] deklarimiIMatrices(int size){
+    	double[][] m = new double[size][size];
+		return m;
+		}
+    	 public static double[][] mbushjaEMatricave() //mbushja e matricave sepse ne detyre eshte kerkuar se pari te behet mbushja e vektoreve dhe matricave me ane te metodave
+    	   {
+    	      String rreshta = JOptionPane.showInputDialog("Type the number of rows");
+    	      int r = new Integer(rreshta).intValue();
+    	      String kolona = JOptionPane.showInputDialog("Type the number of columns");
+    	      int k = new Integer(kolona).intValue();
+    	      double[][] d = new double[r][k];
+    	      for(int i = 0; i < r; i++) 
+    	      {
+    	         for(int j = 0; j < k; j++) 
+    	         {
+    	            String fillimi = JOptionPane.showInputDialog("Type the element of: row " + i + ", column " + j);
+    	            d[i][j] = Double.parseDouble(fillimi);
+    	         }
+    	      }
+    	      return d;
+    	   }
+    	   
+    	 public double[][] shuma(double[][] m1, double[][] m2) 
+         {                                                                          //shuma
+    		double[][] pergjigjja = new double[m1.length][m2.length];
+    			
+    		for (int i = 0; i < m1.length; i++) {
+    		for (int j = 0; j < m2.length; j++) {
+    		pergjigjja[i][j] = m1[i][j] + m2[i][j];
+    				}
+    			}
+    			return pergjigjja;
+    		}
+    	 
+    	 public double[][] ndryshimi(double[][] m1, double[][] m2) {
+    			double[][] pergjigjja = new double[m1.length][m2.length];
+    			
+    			for (int i = 0; i < m1.length; i++) {
+    				for (int j = 0; j < m2.length; j++) {
+    					pergjigjja[i][j] = m1[i][j] - m2[i][j];
+    				}
+    			}
+    			return pergjigjja;
+    		}
+    	   public static double findlInfinit(double[][] n)
+    	   {
+    	      double max = 0.0;
+    	      for(int i = 0; i < n.length; i++) 
+    	      {
+    	    	  double pergjigjja = 0.0;
+    	          for(int j = 0; j < n.length; j++) 
+    	         {
+    	        	 pergjigjja += Math.abs(n[i][j]);
+    	         }
+    	         if(max < pergjigjja)
+    	         {
+    	            max = pergjigjja;
+    	         }
+    	        
+    	      }
+    	      return max;
+    	   }
+    	   public static double gjejeFrobenius(double[][] n) 
+    	   {
+    	      double pergjigjja = 0.0;
+    	      for(int i = 0; i < n.length; i++) 
+    	      {
+    	         for(int j = 0; j < n.length; j++)
+    	         {
+    	        	pergjigjja  += Math.pow(n[i][j], 2);
+    	         }
+    	      }
+    	      return Math.sqrt(pergjigjja);
+    	   }
+	}

@@ -1,0 +1,115 @@
+import java.util.Arrays;
+import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
+
+public class PageRank4
+{
+	static DecimalFormat f = new DecimalFormat("0.0");
+	public static void main(String[] args)
+	{ 
+	
+		
+		 int nyje=4;
+		
+		double[][] mundesi = new double[nyje][nyje];
+		for(int i=0;i<nyje;i++)
+		{
+			for(int j=0;j<nyje;j++)
+			{
+				String n = JOptionPane.showInputDialog("Me sa webfaqe eshte  e lidhur "+(i+1)+" me nyjen "+(j+1)+"\nOK-po eshte : Cancel-jo nuk eshte");
+				if(n!=null)
+				mundesi[j][i]=1;
+				else
+				mundesi[j][i]=0;
+			}
+		}
+		for(int i=0;i<nyje;i++)
+		{
+			for(int j=0;j<nyje;j++)
+			{
+			System.out.print(mundesi[i][j]+" ");	
+			}
+			}
+		
+		double[] reshtat = new double[nyje];
+		
+		for(int i=0;i<nyje;i++)
+		{
+			int t =0;
+			for(int j=0;j<nyje;j++)
+			{
+				if(mundesi[j][i]==1)
+					t++;
+			}
+			reshtat[i]=t;
+		}
+		for(int j=0;j<nyje;j++)
+		{
+			for(int i=0;i<nyje;i++)
+			{
+				mundesi[j][i]=mundesi[j][i]/reshtat[i];
+			}
+		}
+		
+		for(int i=0;i<nyje;i++)
+		{
+			for(int j=0;j<nyje;j++)
+			{
+			System.out.print(f.format(mundesi[i][j])+" ");	
+			
+			}
+			System.out.println();
+		}
+		
+		 double[] a = {0.4,0.4,0.4,0.4};
+	
+         double[] v =shumezo(mundesi,a);
+         for(int i=0;i<v.length;i++)
+         {
+         System.out.print("v "+f.format(v[i])+" ");
+         }
+         System.out.println();
+         double[] vi = v;
+     
+         int k=1;
+         int l =  new Integer(JOptionPane.showInputDialog("deri ne cilin iterim te gjinden v"));
+         while(k<l )
+         {
+        	 vi = shumezo(mundesi, v);k++;
+         }
+         			System.out.print("v ");
+         			for(int i=0;i<v.length;i++)
+         			{
+         			System.out.print(f.format(vi[i])+" ");
+         			}
+         
+	}
+	
+	public static double[] shumezo(double[][] n, double[] m)
+	{
+
+	    double[] V= new double[m.length];
+	    int i,j;
+	    for(i=0;i<V.length;i++)
+	    {
+	            V[i]=0.00000;
+	    } 
+	   
+	    for(i=0;i<V.length;i++)
+	    {
+	        for(j=0;j<n[0].length;j++)
+	            V[i]+=n[i][j]*m[j];
+	    }
+	    for(int k =0;k<V.length;k++)
+	    {
+	    	try{V[k]= Double.parseDouble(f.format(V[k]).toString());
+	    	}
+	    	catch(NumberFormatException e)
+	    	{
+	    		
+	    	}
+	    	}
+	    return V;
+	}
+
+}

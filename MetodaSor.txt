@@ -1,0 +1,79 @@
+package AnalizeNumerike2;
+import java.text.DecimalFormat;
+
+public class MetodaSor 
+{
+	
+		public static double distancaEuklidiane(double[] n, double[] m)
+		{
+			double results = 0;
+			if (n.length == m.length)
+			{
+				for (int i = 0; i < n.length; i++)
+				{
+					results+= Math.pow(n[i] - m[i], 2);
+				}
+			}
+			return Math.sqrt(results);
+
+		}
+
+	public static String MetodaSor(double[][] A, double[] a,double d, double[] x0, int D, double toleranca)
+	{
+		int l  = A.length; 
+		int k = 1;
+		double[] x = new double[l];
+		boolean progress = true;
+		double shuma;
+		while (k <= D && progress)
+		{
+			System.out.println(" ");
+
+			for (int i = 0; i < l; i++) 
+			{
+				shuma = 0;
+
+				{
+					for (int j = 0; j < l; j++)
+					{
+
+						if (i != j) 
+						{
+							shuma += A[i][j] * x0[j];
+						}
+					}
+				}
+
+				x0[i] = (1 - d) * x0[i] + (d * (a[i] - shuma) / A[i][i]);
+				DecimalFormat f = new DecimalFormat("0.0000");
+				System.out.print(" x" + k + " = " + f.format(x0[i]) + "	");
+				System.out.println();
+
+				if ( distancaEuklidiane(x, x0) < toleranca)
+				{
+					progress = false;
+				} else 
+				{
+
+					k++;
+
+				}
+
+			}
+		}
+		return ("Numri maksimal i iterimeve qe ka arritur eshte " + (k - 1));
+	}
+
+public static void main(String[] args) 
+{
+	double[][] A = { { 1, 0, 4 }, { 4, -2, 5 }, { 2, 6, -1 } }; // Matrica e  adjuguar, vektori x0, d-konstantja,a-gjymtyret e lira,D-numri maksimum i iterimeve,toleranca
+	double[] x0 = { 4,0,1}; 
+	double d = 3.55;    
+	double[] a = { 10, -10, 20 };
+	int D = 20; 
+	double toleranca  = 1e-3; 
+
+	System.out.println(MetodaSor(A, a, d,x0, D, toleranca));
+
+}
+}

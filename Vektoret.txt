@@ -1,0 +1,85 @@
+import javax.swing.*;
+public class Vektoret
+{
+	public static void main(String[] args) 
+	{ }
+		public double[] definimiIVektorit(int length)
+		{
+			double[] v = new double[length];
+			return v;
+		}
+		
+	public static double[] mbushjaEVektoreve(int n)  //ne kete metode kam bere mbushjen e vektoreve
+	{
+      double[] d = new double[n];
+      for(int i = 0; i < n; i++) 
+      {
+         String fillimi = JOptionPane.showInputDialog("Type element " + i);
+         d[i] = Double.parseDouble(fillimi);
+      }
+      return d;
+   }
+	
+	
+	   public double[] MbledhjaEVektoreve(double[] n, double[] m) //per mbledhje
+	   {
+	      double[] pergjigjja = new double[n.length];
+	      for(int i = 0; i < pergjigjja.length; i++) 
+	      {
+	    	  pergjigjja[i] = n[i] + m[i];
+	      }
+	      return pergjigjja;
+	   }
+	   
+	   public static double[] NdryshimiIVektoreve(double[] n, double[] m) //ndryshimi 
+	   {
+	      double[] diferenca = new double[n.length];
+	      for(int i = 0; i < diferenca.length; i++)
+	      {
+	         diferenca[i] = n[i] - m[i];
+	      }
+	      return diferenca;
+	   }
+	   
+	   public static double gjejeL2Normen(double[] n)    
+	   {
+	      double pergjigjja = 0.0;
+	      for(int i = 0; i < n.length; i++)
+	      {
+	    	  pergjigjja += Math.pow(n[i], 2);
+	      }
+	      return Math.sqrt(pergjigjja);
+	   }
+	   
+	   public static double gjejeLInfinitNormen(double[] n)  //L infinit ku duhet ta gjejm maksimumin
+	   {
+	      double max = Math.abs(n[0]);
+	      for(int i = 0; i < n.length; i++)
+	      {
+	         if(Math.abs(n[i]) > max)
+	            max = Math.abs(n[i]);
+	      }
+	      return max;
+	   }
+	   
+	   public static double gjejeDistancaEuklidiane(double[] n, double[] m)
+	   {
+	      double distanca = 0.0;
+	      for(int i = 0; i < n.length; i++)
+	      {
+	         distanca += Math.pow(n[i] + m[i], 2);
+	      }
+	      return Math.sqrt(distanca);
+	   }
+	   
+	   public static double gjejeDistancenMaksimale(double[] n, double[] m)
+	   {
+	      double max = Math.abs(n[0] - m[0]);
+	      for(int i = 0; i < n.length; i++) 
+	      {
+	         if(Math.abs(n[i] - m[i]) > max)
+	            max = Math.abs(n[i] - m[i]);
+	      }
+	      return max;
+	   }
+}
